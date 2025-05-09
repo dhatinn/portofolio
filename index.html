@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hi! Dhatin Here</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="mediaqueries.css" />
+    <style>
+        /* Mini Player Popup Styles */
+        .open-player-btn {
+            position: fixed;
+            bottom: 5%;
+            right: 2%;
+            background: #383838;
+            border: none;
+            color: white;
+            padding: 20px 20px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 6px 15px rgba(197, 197, 197, 0.6);
+            transition: background 0.3s ease;
+            z-index: 1000;
+        }
+        .open-player-btn:hover {
+            background: #464646;
+        }
+
+       
+        .music-popup {
+      position: fixed;
+      bottom: 5%; /* Adjusts the position from the bottom */
+      right: 2%;  /* Adjusts the position from the right */
+      width:20%; /* Sets the width to 90% of the viewport width */
+      max-width: 20%; /* Optional: sets a maximum width */
+      background: #282828;
+      border-radius: 10px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.7);
+      padding: 40px;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      z-index: 1100;
+}
+
+
+        .music-popup.show {
+            display: flex;
+            animation: popupFadeIn 0.4s ease forwards;
+        }
+
+        @keyframes popupFadeIn {
+            from {opacity: 0; transform: translateY(20px);}
+            to {opacity: 1; transform: translateY(0);}
+        }
+
+        .music-popup header {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .music-popup header h2 {
+            font-size: 1.2rem;
+            margin: 0;
+            color: #fff;
+        }
+
+        .music-popup header button.close-btn {
+            background: transparent;
+            border: none;
+            color: #ddd;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .music-popup header button.close-btn:hover {
+            color: #fff;
+        }
+
+        .album-art {
+            width: 100%;
+            height: 100px;
+            background: url('./assets/album-art-placeholder.png') no-repeat center center;
+            background-size: cover;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+
+        .track-info {
+            text-align: center;
+            color: #fff;
+            margin-bottom: 15px;
+        }
+
+        .track-info h3 {
+            margin: 0;
+            font-size: 1rem;
+        }
+
+        .track-info p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: #b3b3b3;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .control-btn {
+            background: transparent;
+            border: none;
+            color: #4d4d4d;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .control-btn:hover {
+            color: #707070;
+        }
+
+        audio {
+      width: 100%; /* Ensures the audio player takes the full width of the popup */
+      outline: none;
+      border-radius: 12px;
+      background: #1a1a2e;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.4);
+    }
+
+    </style>
+</head>
+<body>
+    <nav id="desktop-nav">
+      <div class="logo">
+        <img src="assets/" alt="Logo" />
+    </div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+    <nav id="hamburger-nav">
+        <div class="logo">Dhatin</div>
+        <div class="hamburger-menu">
+            <div class="hamburger-icon" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="menu-links">
+                <li><a href="#about" onclick="toggleMenu()">About</a></li>
+                <li><a href="#experience" onclick="toggleMenu()">Experience</a></li>
+                <li><a href="#projects" onclick="toggleMenu()">Projects</a></li>
+                <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
+            </div>
+        </div>
+    </nav>
+    <section id="profile">
+        <div class="section__pic-container">
+            <img src="./assets/profil-pic.png" alt="profile picture" />
+        </div>
+        <div class="section__text">
+            <p class="section__text__p1">Hello, I'm</p>
+            <h1 class="title">Dhatin</h1>
+            <p class="section__text__p2">Fullstack Developer</p>
+            <div class="btn-container">
+                <button class="btn btn-color-2" onclick="window.open('https://www.behance.net/dhatin8')">Download CV</button>
+                <button class="btn btn-color-1" onclick="location.href='./#contact'">Contact Info</button>
+            </div>
+            <div id="socials-container">
+                <img src="./assets/instagram.png" alt="My LinkedIn profile" class="icon" onclick="location.href='https://instagram.com/dhatinnn'" />
+                <img src="./assets/github.png" alt="My Github profile" class="icon" onclick="location.href='https://github.com/'" />
+            </div>
+        </div>
+    </section>
+    <section id="about">
+        <p class="section__text__p1">Get To Know More</p>
+        <h1 class="title">About Me</h1>
+        <div class="section-container">
+            <div class="section__pic-container">
+                <img src="./assets/about-pic.png" alt="Profile picture" class="about-pic" />
+            </div>
+            <div class="about-details-container">
+                <div class="about-containers">
+                    <div class="details-container">
+                        <img src="./assets/experience.png" alt="Experience icon" class="icon" />
+                        <h3>Experience</h3>
+                        <p>2+ years <br />Fullstack Development</p>
+                    </div>
+                    <div class="details-container">
+                        <img src="./assets/education.png" alt="Education icon" class="icon" />
+                        <h3>Education</h3>
+                        <p>Autodidactic<br /></p>
+                    </div>
+                </div>
+                <div class="text-container">
+                    <p>
+Halo! Saya Dhatin Nuril Arsandy, seorang mahasiswa yang saat ini menempuh pendidikan di Kota Bandung. Saat ini, saya sudah memasuki tahun kedua perkuliahan dan sedang giat mempelajari dunia coding. Saya sangat tertarik dengan perkembangan teknologi dan berusaha mengasah kemampuan pemrograman saya selama masa kuliah ini.  
+
+Selain coding, saya juga menikmati eksplorasi hal-hal baru terkait pengembangan perangkat lunak, algoritma, dan teknologi terkini. Bandung, dengan atmosfer kreatif dan dinamisnya, menjadi tempat yang tepat bagi saya untuk terus belajar dan berkembang.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <img src="./assets/arrow.png" alt="Arrow icon" class="icon arrow" onclick="location.href='./#experience'" />
+    </section>
+    <section id="experience">
+        <p class="section__text__p1">Explore My</p>
+        <h1 class="title">Experience</h1>
+        <div class="experience-details-container">
+            <div class="about-containers">
+                <div class="details-container">
+                    <h2 class="experience-sub-title">Frontend Development</h2>
+                    <div class="article-container">
+                        <article>
+                            <img src="./assets/checkmark.png" alt="Experience icon" class="icon" />
+                            <div>
+                                <h3>HTML</h3>
+                                <p>Experienced</p>
+                            </div>
+                        </article>
+                        <article>
+                            <img src="./assets/checkmark.png" alt="Experience icon" class="icon" />
+                            <div>
+                                <h3>CSS</h3>
+                                <p>Experienced</p>
+                            </div>
+                        </article>
+                        <article>
+                            <img src="./assets/checkmark.png" alt="Experience icon" class="icon" />
+                            <div>
+                                <h3>SASS</h3>
+                                <p>Intermediate</p>
+                            </div>
+                        </article>
+                        <article>
+                            <img src="./assets/checkmark.png" alt="Experience icon" class="icon" />
+                            <div>
+                                <h3>JavaScript</h3>
+                                <p>Basic</p>
+                            </div>
+                        </article>
+                        <article>
+                            <img src="./assets/checkmark.png" alt="Experience icon" class="icon" />
+                            <div>
+                                <h3>TypeScript</h3>
+                                <p>Basic</p>
+                            </div>
+                        </article>
+                        <article>
+                            <img src="./assets/checkmark.png" alt="Experience icon" class="icon" />
+                            <div>
+                                <h3>Material UI</h3>
+                                <p>Intermediate</p>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+                <div class="details-container">
+                    <h2 class="experience-sub-title">Backend Development</h2>
+                    <div class="article-container">
+                        <article>
+                            <img src="./assets/checkmark.png" alt="Experience icon" class="icon" />
+                            <div>
+                                <h3>PostgreSQL</h3>
+                                <p>Basic</p>
+                            </div>
+                        </article>
+                        <article>
+                            <img src="./assets/checkmark.png" alt="Experience icon" class="icon" />
+                            <div>
+                                <h3>Node JS</h3>
+                                <p>Intermediate</p>
+                            </div>
+                        </article>
+                        <article>
+                            <img src="./assets/checkmark.png" alt="Experience icon" class="icon" />
+                            <div>
+                                <h3>Express JS</h3>
+                                <p>Intermediate</p>
+                            </div>
+                        </article>
+                        <article>
+                            <img src="./assets/checkmark.png" alt="Experience icon" class="icon" />
+                            <div>
+                                <h3>Git</h3>
+                                <p>Intermediate</p>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <img src="./assets/arrow.png" alt="Arrow icon" class="icon arrow" onclick="location.href='./#projects'" />
+    </section>
+    <section id="projects">
+        <p class="section__text__p1">Browse My Recent</p>
+        <h1 class="title">Projects</h1>
+        <div class="experience-details-container">
+            <div class="about-containers">
+                <div class="details-container color-container">
+                    <div class="article-container">
+                        <img src="./assets/5 slide pertama.jpg" alt="Project 1" class="project-img" />
+                        <img src="./assets/5 slide kedua.jpg" alt="Project 1" class="project-img" />
+                    </div>
+                    <h2 class="experience-sub-title project-title">App Shop Development</h2>
+                    <div class="btn-container">
+                        <button class="btn btn-color-2 project-btn" onclick="location.href='https://github.com/'">Github</button>
+                        <button class="btn btn-color-2 project-btn" onclick="location.href='https://github.com/'">Live Demo</button>
+                    </div>
+                </div>
+                <div class="details-container color-container">
+                    <div class="article-container">
+                        <img src="./assets/BarcaMadrid copy.jpg" alt="Project 2" class="project-img" />
+                    </div>
+                    <h2 class="experience-sub-title project-title">Promotion On Web Streaming Sport</h2>
+                    <div class="btn-container">
+                        <button class="btn btn-color-2 project-btn" onclick="location.href='https://github.com/'">Github</button>
+                        <button class="btn btn-color-2 project-btn" onclick="location.href='https://github.com/'">Live Demo</button>
+                    </div>
+                </div>
+                <div class="details-container color-container">
+                    <div class="article-container">
+                        <img src="./assets/Tour copy.jpg" alt="Project 3" class="project-img" />
+                    </div>
+                    <h2 class="experience-sub-title project-title">Ads for Tour Guide Apps</h2>
+                    <div class="btn-container">
+                        <button class="btn btn-color-2 project-btn" onclick="location.href='https://github.com/'">Github</button>
+                        <button class="btn btn-color-2 project-btn" onclick="location.href='https://github.com/'">Live Demo</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <img src="./assets/arrow.png" alt="Arrow icon" class="icon arrow" onclick="location.href='./#contact'" />
+    </section>
+    <section id="contact">
+        <p class="section__text__p1">You can</p>
+        <h1 class="title">Contact Me On</h1>
+        <div class="contact-info-upper-container">
+            <div class="contact-info-container">
+                <img src="./assets/email.png" alt="Email icon" class="icon contact-icon email-icon" />
+                <p><a href="mailto:examplemail@gmail.com">dhatinsandy0@gmail.com</a></p>
+            </div>
+            <div class="contact-info-container">
+                <img src="./assets/whatsapp.png" alt="LinkedIn icon" class="icon contact-icon" />
+                <p><a href="wa.me/6285142156672">Whatsapp</a></p>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <nav>
+            <div class="nav-links-container">
+                <ul class="nav-links">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+        <p>Copyright &#169; 2023 Dhatin. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Mini Music Player Popup 1 (Hidden) -->
+    <div class="music-popup" role="dialog" aria-modal="true" aria-labelledby="player-title-1" style="display: none;">
+        <header>
+            <h2 id="player-title-1">Now Playing</h2>
+            <button class="close-btn" aria-label="Close music player">&times;</button>
+        </header>
+        <div class="album-art" style="background-image: url('./assets/album-art-placeholder.png');"></div>
+        <div class="track-info">
+            <h3>Track Title 1</h3>
+            <p>Artist Name 1</p>
+        </div>
+        <audio id="audio1" controls preload="metadata">
+            <source src="assets/" type="audio/mpeg" />
+            Your browser does not support the audio element.
+        </audio>
+    </div>
+
+    <!-- Mini Music Player Popup 2 -->
+    <button class="open-player-btn" aria-label="Open music player 2">🎵</button>
+    <div class="music-popup" role="dialog" aria-modal="true" aria-labelledby="player-title-2">
+        <header>
+            <h2 id="player-title-2">Now Playing</h2>
+            <button class="close-btn" aria-label="Close music player">&times;</button>
+        </header>
+        <div class="album-art" style="background-image: url('./assets/album.jpg');"></div>
+        <div class="track-info">
+            <h3>Backsound</h3>
+            <p>Dhatin</p>
+        </div>
+        <audio id="audio2" controls preload="metadata">
+            <source src="assets/songs.mp3" type="audio/mpeg" />
+            Your browser does not support the audio element.
+        </audio>
+    </div>
+    <div class="slider">
+      <!-- Slider items here -->
+  </div>
+  
+    <script>
+        // Functionality for the first music player (hidden)
+        const audio1 = document.getElementById('audio1');
+        const closeBtn1 = document.querySelector('.music-popup[aria-labelledby="player-title-1"] .close-btn');
+
+        closeBtn1.addEventListener('click', () => {
+            audio1.pause();
+            audio1.currentTime = 0;
+        });
+
+        // Functionality for the second music player
+        const openBtn2 = document.querySelector('.open-player-btn');
+        const popup2 = document.querySelector('.music-popup[aria-labelledby="player-title-2"]');
+        const closeBtn2 = popup2.querySelector('.close-btn');
+        const audio2 = document.getElementById('audio2');
+
+        openBtn2.addEventListener('click', () => {
+            popup2.classList.add('show');
+            audio2.play().catch(() => { /* Autoplay might be blocked */ });
+            openBtn2.style.display = 'none';
+        });
+
+        closeBtn2.addEventListener('click', () => {
+            popup2.classList.remove('show');
+            audio2.pause();
+            audio2.currentTime = 0;
+            openBtn2.style.display = 'block';
+        });
+    </script>
+</body>
+</html>
